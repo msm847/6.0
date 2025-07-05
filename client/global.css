@@ -1,0 +1,724 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    /* Vigilum color system */
+    --vigilum-bg: 217 28% 6%; /* #0F121A */
+    --vigilum-label: 223 13% 69%; /* #AAB0BF */
+    --vigilum-subheadline: 223 14% 83%; /* #D0D4DB */
+    --vigilum-body: 225 22% 97%; /* #F5F7FA */
+    --vigilum-blue: 222 100% 59%; /* #316EFF */
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: var(--vigilum-bg);
+    --foreground: var(--vigilum-body);
+
+    --card: var(--vigilum-bg);
+    --card-foreground: var(--vigilum-body);
+
+    --popover: var(--vigilum-bg);
+    --popover-foreground: var(--vigilum-body);
+
+    --primary: var(--vigilum-blue);
+    --primary-foreground: var(--vigilum-body);
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: var(--vigilum-body);
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: var(--vigilum-label);
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: var(--vigilum-body);
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: var(--vigilum-body);
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: var(--vigilum-blue);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "IBM Plex Sans",
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-plex-sans {
+    font-family:
+      "IBM Plex Sans",
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+
+  .font-plex-mono {
+    font-family: "IBM Plex Mono", "Consolas", "Monaco", monospace;
+  }
+
+  .text-vigilum-label {
+    color: hsl(var(--vigilum-label));
+  }
+
+  .text-vigilum-subheadline {
+    color: hsl(var(--vigilum-subheadline));
+  }
+
+  .text-vigilum-body {
+    color: hsl(var(--vigilum-body));
+  }
+
+  .bg-vigilum {
+    background-color: hsl(var(--vigilum-bg));
+  }
+
+  .text-vigilum-blue {
+    color: hsl(var(--vigilum-blue));
+  }
+
+  .bg-vigilum-blue {
+    background-color: hsl(var(--vigilum-blue));
+  }
+}
+
+/* Scroll-based line reveals */
+@keyframes scroll-reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.scroll-reveal-0 {
+  animation: scroll-reveal 0.5s ease-in-out forwards;
+  animation-delay: 0s;
+}
+
+.scroll-reveal-1 {
+  opacity: 0;
+  animation: scroll-reveal 0.8s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+.scroll-reveal-2 {
+  opacity: 0;
+  animation: scroll-reveal 1s ease-in-out forwards;
+  animation-delay: 1.2s;
+}
+
+/* 3D Network Background Animations */
+@keyframes float-1 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate3d(100px, -50px, 20px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(50px, 100px, -10px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate3d(-50px, -25px, 15px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float-2 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translate3d(-75px, 80px, 25px);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translate3d(80px, -40px, -15px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.4;
+  }
+}
+
+@keyframes float-3 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translate3d(60px, -80px, 30px);
+    opacity: 0.5;
+  }
+  80% {
+    transform: translate3d(-90px, 20px, -20px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.3;
+  }
+}
+
+/* 3D Curved Box Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Gradient utilities for curved surfaces */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+.bg-gradient-conic {
+  background: conic-gradient(var(--tw-gradient-stops));
+}
+
+/* Slow spin animation for background effects */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Cognitive pressure field animations */
+@keyframes pressure-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotateX(-3deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02) rotateX(-5deg);
+    opacity: 0.9;
+  }
+}
+
+.animate-pressure-pulse {
+  animation: pressure-pulse 4s ease-in-out infinite;
+}
+
+/* Warped surface effects */
+@keyframes surface-wave {
+  0%,
+  100% {
+    transform: rotateX(-3deg) scaleY(0.96);
+  }
+  33% {
+    transform: rotateX(-4deg) scaleY(0.94);
+  }
+  66% {
+    transform: rotateX(-2deg) scaleY(0.98);
+  }
+}
+
+.animate-surface-wave {
+  animation: surface-wave 6s ease-in-out infinite;
+}
+
+/* Depth shadow animations */
+@keyframes depth-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: perspective(100px) rotateX(90deg) translateZ(-20px) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: perspective(100px) rotateX(90deg) translateZ(-25px) scale(1.05);
+  }
+}
+
+.animate-depth-breathe {
+  animation: depth-breathe 5s ease-in-out infinite;
+}
+
+/* Epistemic Semantic Operators */
+.semantic-operator {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.semantic-operator:hover {
+  z-index: 10;
+}
+
+/* Scale utility classes */
+.scale-98 {
+  transform: scale(0.98);
+}
+
+.scale-102 {
+  transform: scale(1.02);
+}
+
+/* Epistemic collapse effect */
+@keyframes epistemic-collapse {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scaleY(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(5px) scaleY(0.98);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(5px) scaleY(0.95);
+  }
+}
+
+.epistemic-collapse.active {
+  animation: epistemic-collapse 2s ease-out forwards;
+}
+
+/* Perceptual activation enhancements */
+@keyframes semantic-pulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.semantic-operator:hover .semantic-lens {
+  animation: semantic-pulse 1.5s ease-in-out infinite;
+}
+
+/* Typological resonance */
+.semantic-operator[data-typology="⊗"]:hover {
+  filter: drop-shadow(0 0 15px rgba(139, 157, 232, 0.4));
+}
+
+.semantic-operator[data-typology="τ"]:hover {
+  filter: drop-shadow(0 0 15px rgba(212, 168, 116, 0.4));
+}
+
+.semantic-operator[data-typology="ϕ"]:hover {
+  filter: drop-shadow(0 0 15px rgba(212, 197, 116, 0.4));
+}
+
+.semantic-operator[data-typology="Λ"]:hover {
+  filter: drop-shadow(0 0 15px rgba(232, 136, 136, 0.4));
+}
+
+/* Awakening trigger for final box */
+.semantic-operator[data-typology="Λ"].awakened {
+  animation: awakening-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes awakening-shimmer {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 15px rgba(232, 136, 136, 0.4)) brightness(1);
+  }
+  33% {
+    filter: drop-shadow(0 0 25px rgba(232, 136, 136, 0.6)) brightness(1.05);
+  }
+  66% {
+    filter: drop-shadow(0 0 20px rgba(232, 136, 136, 0.5)) brightness(1.02);
+  }
+}
+
+/* Vigilum Clause Box Semantic Operators */
+.vigilum-clause-box {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* Clause Types - Exact Color Specifications */
+.clause-ci {
+  background-color: #dce5fa !important;
+  border-color: #b5c7ed !important;
+}
+
+.clause-dg {
+  background-color: #f5d6b3 !important;
+  border-color: #e0ba89 !important;
+}
+
+.clause-od {
+  background-color: #f3e6ba !important;
+  border-color: #e6d197 !important;
+}
+
+.clause-sc {
+  background-color: #f6d4d4 !important;
+  border-color: #e9baba !important;
+}
+
+/* Hover Activation - Semantic Operator Response */
+.vigilum-clause-box:hover {
+  transform: scale(1.03) rotateX(2deg);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Glyph Overlay Positioning */
+.vigilum-clause-box::after {
+  content: attr(data-glyph);
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 2.2rem;
+  opacity: 0.1;
+  color: #333;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Glyph Activation on Hover */
+.vigilum-clause-box:hover::after {
+  opacity: 0.2;
+  animation: glyph-pulse 2s ease-in-out infinite;
+}
+
+.vigilum-clause-box:hover .glyph-overlay {
+  opacity: 0.2 !important;
+  animation: glyph-flicker 1.5s ease-in-out infinite;
+}
+
+/* Glyph Animation Effects */
+@keyframes glyph-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glyph-flicker {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  25% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  75% {
+    opacity: 0.18;
+  }
+}
+
+/* Typological Resonance - Enhanced Hover Effects */
+.clause-ci:hover {
+  box-shadow:
+    0 12px 30px rgba(181, 199, 237, 0.3),
+    0 0 20px rgba(181, 199, 237, 0.2),
+    inset 0 0 20px rgba(181, 199, 237, 0.1);
+}
+
+.clause-dg:hover {
+  box-shadow:
+    0 12px 30px rgba(224, 186, 137, 0.3),
+    0 0 20px rgba(224, 186, 137, 0.2),
+    inset 0 0 20px rgba(224, 186, 137, 0.1);
+}
+
+.clause-od:hover {
+  box-shadow:
+    0 12px 30px rgba(230, 209, 151, 0.3),
+    0 0 20px rgba(230, 209, 151, 0.2),
+    inset 0 0 20px rgba(230, 209, 151, 0.1);
+}
+
+.clause-sc:hover {
+  box-shadow:
+    0 12px 30px rgba(233, 186, 186, 0.3),
+    0 0 20px rgba(233, 186, 186, 0.2),
+    inset 0 0 20px rgba(233, 186, 186, 0.1);
+}
+
+/* Collective Trigger - Structural Illusion Collapse */
+.clause-sc.awakened {
+  animation: structural-awakening 4s ease-in-out infinite;
+}
+
+@keyframes structural-awakening {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 30px rgba(233, 186, 186, 0.3),
+      0 0 20px rgba(233, 186, 186, 0.2);
+  }
+  33% {
+    box-shadow:
+      0 15px 40px rgba(233, 186, 186, 0.4),
+      0 0 30px rgba(233, 186, 186, 0.3);
+  }
+  66% {
+    box-shadow:
+      0 10px 25px rgba(233, 186, 186, 0.35),
+      0 0 25px rgba(233, 186, 186, 0.25);
+  }
+}
+
+/* Grid Curvature Effect */
+.structural-collapse {
+  animation: grid-curvature 3s ease-out forwards;
+}
+
+@keyframes grid-curvature {
+  0% {
+    transform: perspective(2000px) rotateX(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(2000px) rotateX(1deg);
+    opacity: 0.7;
+  }
+}
+
+/* ===== GLASS-LOGIC SEMANTIC CONTAINERS ===== */
+
+/* Core Glass Container Styling */
+.glass-logic-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px;
+  padding: 2rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Floating Animation - Ambient System Activity */
+@keyframes glass-float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-3px) translateX(1px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-1px);
+  }
+  75% {
+    transform: translateY(-2px) translateX(2px);
+  }
+}
+
+/* Hover Behavior - Cognitive Activation */
+.glass-logic-container:hover {
+  transform: scale(1.03) rotateX(2deg) rotateY(-1deg) !important;
+  animation-play-state: paused;
+}
+
+/* Typology-Specific Hover Glows */
+.glass-clause-ci:hover {
+  box-shadow:
+    0 12px 30px rgba(58, 86, 216, 0.3),
+    0 0 40px rgba(58, 86, 216, 0.2),
+    inset 0 0 20px rgba(58, 86, 216, 0.1);
+}
+
+.glass-clause-ci:hover .glass-inner-glow {
+  opacity: 1;
+}
+
+.glass-clause-dg:hover {
+  box-shadow:
+    0 12px 30px rgba(248, 94, 0, 0.3),
+    0 0 40px rgba(248, 94, 0, 0.2),
+    inset 0 0 20px rgba(248, 94, 0, 0.1);
+}
+
+.glass-clause-dg:hover .glass-inner-glow {
+  opacity: 1;
+}
+
+.glass-clause-od:hover {
+  box-shadow:
+    0 12px 30px rgba(244, 201, 0, 0.3),
+    0 0 40px rgba(244, 201, 0, 0.2),
+    inset 0 0 20px rgba(244, 201, 0, 0.1);
+}
+
+.glass-clause-od:hover .glass-inner-glow {
+  opacity: 1;
+}
+
+.glass-clause-sc:hover {
+  box-shadow:
+    0 12px 30px rgba(255, 27, 76, 0.3),
+    0 0 40px rgba(255, 27, 76, 0.2),
+    inset 0 0 20px rgba(255, 27, 76, 0.1);
+}
+
+.glass-clause-sc:hover .glass-inner-glow {
+  opacity: 1;
+}
+
+/* Glyph Animation on Hover */
+.glass-logic-container:hover .glass-glyph {
+  opacity: 0.3;
+  animation: glyph-ambient 2s ease-in-out infinite;
+}
+
+@keyframes glyph-ambient {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+/* Special Red Box - Reserved for Future Structural Behaviors */
+.glass-clause-sc {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .glass-logic-container {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .glass-logic-container:hover {
+    transform: scale(1.02) rotateX(1deg) !important;
+  }
+
+  @keyframes glass-float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* Utility Classes */
+.opacity-3 {
+  opacity: 0.03;
+}
