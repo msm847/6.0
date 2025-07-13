@@ -451,7 +451,7 @@ const CLAVISModule = () => {
               </span>
             </div>
             <h2 className="text-4xl font-bold text-gray-100 mb-4 font-mono tracking-tight">
-              CLAVIS INTELLIGENCE
+              CLAVIS
             </h2>
             <p className="text-xl text-gray-400 font-light max-w-3xl mx-auto">
               Semantic simulation tool for modeling how sequences of legal
@@ -502,7 +502,7 @@ const CLAVISModule = () => {
                 </div>
 
                 {/* Clause List */}
-                <div className="space-y-3 max-h-[480px] overflow-y-auto">
+                <div className="space-y-3 max-h-[480px] overflow-y-auto vigilum-scrollbar">
                   {filteredClauses.map((clause) => (
                     <div
                       key={clause.id}
@@ -731,7 +731,7 @@ const CLAVISModule = () => {
 
                 {simulationResult ? (
                   <div
-                    className="space-y-6 max-h-[540px] overflow-y-auto overflow-x-hidden"
+                    className="space-y-6 max-h-[540px] overflow-y-auto overflow-x-hidden vigilum-scrollbar"
                     style={{
                       wordWrap: "break-word",
                       width: "100%",

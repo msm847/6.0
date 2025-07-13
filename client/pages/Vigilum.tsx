@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navigation from "@/components/vigilum/Navigation";
 import Hero from "@/components/vigilum/Hero";
+import WhatWeFight from "@/components/vigilum/WhatWeFight";
 import ModuleGrid from "@/components/vigilum/ModuleGrid";
-import CLAVISModule from "@/components/vigilum/CLAVISModule";
+import LegalStructuralSimulator from "@/components/vigilum/LegalStructuralSimulator";
+
+import SemanticPermutationEngine from "@/components/vigilum/SemanticPermutationEngine";
 import UseCases from "@/components/vigilum/UseCases";
-import AboutSection from "@/components/vigilum/AboutSection";
-import Newsletter from "@/components/vigilum/Newsletter";
+import TeamContact from "@/components/vigilum/TeamContact";
 
 const VigilumPage = () => {
   const location = useLocation();
@@ -39,19 +41,25 @@ const VigilumPage = () => {
     >
       <Navigation />
       <Hero />
+      <WhatWeFight />
       <div id="modules">
         <ModuleGrid />
       </div>
-      <div id="demo">
-        <CLAVISModule />
+      <div id="clause-simulator">
+        <LegalStructuralSimulator />
       </div>
+
+      <div id="demo">
+        <SemanticPermutationEngine />
+      </div>
+
       <div id="cases">
         <UseCases />
       </div>
-      <div id="about">
-        <AboutSection />
+      <div id="team">
+        <TeamContact />
       </div>
-      <Newsletter />
+      <div id="bottom" style={{ height: "1px" }}></div>
     </div>
   );
 };

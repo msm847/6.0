@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Eye,
   Search,
@@ -12,6 +13,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DecryptedText from "../ui/DecryptedText";
 
 const modules = [
   {
@@ -174,16 +176,19 @@ const ModuleGrid = () => {
   const [hoveredModule, setHoveredModule] = useState<string | null>(null);
 
   return (
-    <div className="py-20 px-4" style={{ backgroundColor: "#0B1E16" }}>
+    <div className="py-20 px-4" style={{ backgroundColor: "#0E261D" }}>
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4 font-mono tracking-tight">
-            SEMANTIC INTELLIGENCE MODULES
-          </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Cognitive processor modules analyzing embedded governance risks.
-          </p>
+        <div className="text-center mb-16 mt-8">
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold mb-8 font-mono tracking-tight uppercase"
+            style={{ color: "#B8D0C9" }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            CORE MODULES OVERVIEW
+          </motion.h2>
         </div>
 
         {/* Module Grid - 2x4 responsive layout */}
@@ -241,8 +246,8 @@ const ModuleGrid = () => {
                             : `${module.color}20`,
                   }}
                 >
-                  {/* Glyph and Status */}
-                  <div className="flex items-start justify-between mb-4">
+                  {/* Glyph */}
+                  <div className="mb-4">
                     <div
                       className={`text-4xl font-bold transition-all duration-300 ${
                         isPhantom ? "opacity-50" : ""
@@ -256,18 +261,6 @@ const ModuleGrid = () => {
                       }}
                     >
                       {module.glyph}
-                    </div>
-                    <div
-                      className={`px-2 py-1 rounded-full text-xs font-mono font-bold border ${
-                        isPhantom ? "opacity-60" : ""
-                      }`}
-                      style={{
-                        backgroundColor: `${getStatusColor(module.status)}20`,
-                        borderColor: getStatusColor(module.status),
-                        color: getStatusColor(module.status),
-                      }}
-                    >
-                      {module.status}
                     </div>
                   </div>
 
@@ -307,63 +300,6 @@ const ModuleGrid = () => {
                     </p>
                   </div>
 
-                  {/* Typology Focus */}
-                  <div className="mb-4">
-                    <div className="text-xs text-gray-400 mb-2 font-mono">
-                      TYPOLOGY FOCUS
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {module.typologyFocus.map((type) => (
-                        <span
-                          key={type}
-                          className="px-2 py-1 rounded text-xs font-mono"
-                          style={{
-                            backgroundColor: `${module.accentColor}20`,
-                            color: module.accentColor,
-                            border: `1px solid ${module.accentColor}40`,
-                          }}
-                        >
-                          {type}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Risk Fingerprint */}
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between text-xs font-mono mb-2">
-                      <span
-                        className={`text-gray-400 ${isPhantom ? "opacity-60" : ""}`}
-                      >
-                        {isPhantom ? "SEMANTIC CAPACITY" : "RISK FINGERPRINT"}
-                      </span>
-                      <span
-                        style={{ color: module.accentColor }}
-                        className={isPhantom ? "opacity-60" : ""}
-                      >
-                        {isPhantom
-                          ? "RESERVED"
-                          : module.riskFingerprint.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-700/50 rounded-full h-2">
-                      {isPhantom ? (
-                        <div className="h-2 rounded-full bg-gray-600/30 animate-pulse opacity-30" />
-                      ) : (
-                        <div
-                          className="h-2 rounded-full transition-all duration-1000"
-                          style={{
-                            width: `${module.riskFingerprint * 100}%`,
-                            backgroundColor: module.accentColor,
-                            boxShadow: isHovered
-                              ? `0 0 10px ${module.accentColor}`
-                              : "none",
-                          }}
-                        />
-                      )}
-                    </div>
-                  </div>
-
                   {/* Analyze Button */}
                   {isPhantom ? (
                     <Button
@@ -381,7 +317,15 @@ const ModuleGrid = () => {
                       </span>
                     </Button>
                   ) : (
-                    <Link to={`/module/${module.id}`}>
+                    <Link
+                      to={`/module/${module.id}`}
+                      onClick={() => {
+                        // Scroll to top when navigating to module page
+                        setTimeout(() => {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }, 100);
+                      }}
+                    >
                       <Button
                         className="w-full font-mono text-sm transition-all duration-300 group"
                         style={{
